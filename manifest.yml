@@ -1,0 +1,10 @@
+---
+name: Geneious
+category: Interactive Apps
+subcategory: GUIs
+role: batch_connect
+description: |
+  This app will launch a [Geneious] GUI. You will be able to interact with the Geneious GUI
+  through a VNC session.
+
+  [Geneious]: https://geneious.com
