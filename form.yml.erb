@@ -63,7 +63,7 @@ attributes:
     widget: select
     options:
     <%- accounts.each do |a| -%>
-      - [ "<%= a %>", "<%= a %>" ]
+      - [ "<%= a %>", "<%= a.delete(' ') %>" ]
     <%- end -%>
   <%- end -%>
 
