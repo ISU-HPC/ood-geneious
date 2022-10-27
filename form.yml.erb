@@ -1,34 +1,9 @@
 <%-
-  cmd = "/usr/bin/sinfo -ho %R"
-  begin
-    output, status = Open3.capture2e(cmd)
-    if status.success?
-      queues = output.split("\n").map(&:strip).reject(&:blank?).sort
-    else
-      raise output
-    end
-  rescue => e
-    queues = []
-    error = e.message.strip
-  end 
--%>
-
-
-<%-
-  cmd1 = "/bin/whoami"
-  begin
-    username, status = Open3.capture2e(cmd1)
-    cmd2 = "/usr/bin/sacctmgr show assoc format=account%45 -n where user=#{username}"
-    output, status = Open3.capture2e(cmd2)
-    if status.success?
-      accounts = output.split("\n").map(&:strip).reject(&:blank?).sort
-    else
-      raise output
-    end
-  rescue => e
-    accounts = []
-    error = e.message.strip
-  end
+        begin
+        queues = File.readlines Dir.home + "/.slurm-partitions"
+        accounts = File.readlines Dir.home + "/.slurm-accounts"
+        error = ""
+        end
 -%>
 
 ---
@@ -66,31 +41,22 @@ attributes:
   custom_queue:
     label: Queue
     help: Select queue from the drop-down
-    <%- if error -%>
-      <span class="text-danger">Error when parsing queues:</span>
-      ```
-      <%= error.gsub("\n", "\n      ") %>
-      ```
-    <%- end -%>
   <%- if queues.blank? -%>
     widget: text_field
   <%- else -%>
     widget: select
     options:
-    <%- queues.each do |q| -%>
-      - [ "<%= q %>", "<%= q %>" ]
-    <%- end -%>
-  <%- end -%> 
- 
+    <% queues.each do |val| %>
+    <%  p = val.split(",")[0] %>
+    <%  pp = val.split(",")[0].ljust(24,'-') %>
+    <%  t = val.split(",")[1].rjust(24) %>
+      - [ " <%= pp %>-- Max Time: <%= t %>" , "<%= p %>"]
+    <% end %>
+  <% end %>
+
   custom_account:
     label: Account
     help: Account under which to run the job
-    <%- if error -%>
-      <span class="text-danger">Error when parsing accounts:</span>
-      ```
-      <%= error.gsub("\n", "\n      ") %>
-      ```
-    <%- end -%>
   <%- if accounts.blank? -%>
     widget: text_field
   <%- else -%>
