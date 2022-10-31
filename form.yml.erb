@@ -2,6 +2,7 @@
         begin
         queues = File.readlines Dir.home + "/.slurm-partitions"
         accounts = File.readlines Dir.home + "/.slurm-accounts"
+        qos = File.readlines Dir.home + "/.slurm-qos"
         error = ""
         end
 -%>
