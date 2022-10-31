@@ -5,11 +5,11 @@ batch_connect:
   dpi: "<%= dpi %>"
   extra_args: "-depth 32"
 script:
-  accounting_id: "<%= custom_account %>"
+  accounting_id: "<%= custom_account.delete(' ') %>"
   native:
     - "--nodes=<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>"
     - "--mem=<%= mem_req %>" 
     - "--job-name=<%= job_name %>"
     - "--ntasks=<%= ntasks %>"
-    - "--account=<%= custom_account %>"
-    - "--partition=<%= custom_queue %>"
+    - "--account=<%= custom_account.delete(' ') %>"
+    - "--partition=<%= custom_queue.delete(' ') %>"
