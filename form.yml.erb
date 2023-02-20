@@ -18,7 +18,7 @@
   cmd1 = "/bin/whoami"
   begin
     username, status = Open3.capture2e(cmd1)
-    cmd2 = "/usr/bin/sacctmgr show assoc format=account -n where user=#{username}"
+    cmd2 = "/usr/bin/sacctmgr show assoc format=account%45 -n where user=#{username}"
     output, status = Open3.capture2e(cmd2)
     if status.success?
       accounts = output.split("\n").map(&:strip).reject(&:blank?).sort
@@ -54,6 +54,7 @@ attributes:
     value: "2023.0.4"
     options:
       - ["2023.0.4"]
+      - ["2022.2.1"]
       - ["2022.1.1"]
       - ["2022.0.2"]
 
