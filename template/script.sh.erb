@@ -4,6 +4,7 @@
 setup_env () {
   module purge
 
+  module use /software/7/modulefiles
   module load geneious/<%= context.version %>
 }
 setup_env

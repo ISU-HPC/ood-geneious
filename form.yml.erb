@@ -10,6 +10,8 @@
 ---
 cluster:
   - "ceres"
+  - "ceres-dev"
+
 form:
   - version
   - custom_account
@@ -27,10 +29,12 @@ attributes:
   version:
     widget: "select"
     label: "Geneious Version"
+    value: "2023.0.4"
     options:
-      - ["2022.2.1"]
-      - ["2022.1.1"]
-      - ["2022.0.2"]
+      - [ "2022.2.1" ]
+      - [ "2022.1.1" ]
+      - [ "2022.0.2" ]
+      - [ "2023.0.4" ]
 
   working_dir:
     label: "Working Directory"
