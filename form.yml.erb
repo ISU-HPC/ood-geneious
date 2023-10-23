@@ -20,6 +20,7 @@ form:
   - ntasks
   - mem_req
   - custom_queue
+  - extra_arguments
   - bc_vnc_resolution
   - screen_size
   - dpi
@@ -116,4 +117,11 @@ attributes:
     label: "Display DPI to use"
     value: 72
     help: "Adjust display scaling dots-per-inch (DPI)"
+
+  extra_arguments:
+    label: "Extra Optional Slurm Arguments"
+    help: "Provide extra arguments for Slurm here. Examples: --mail-type=BEGIN,END,FAIL --mail-user=username@usda.gov --begin=now+1hour"
+    widget: text_field
+    value: ""
+
 

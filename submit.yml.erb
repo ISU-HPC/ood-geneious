@@ -13,3 +13,7 @@ script:
     - "--ntasks=<%= ntasks %>"
     - "--account=<%= custom_account.delete(' ') %>"
     - "--partition=<%= custom_queue.delete(' ') %>"
+    <%- extra_arguments.split.each do |e| -%>
+    - "<%= e %>"
+    <%- end -%>
+
