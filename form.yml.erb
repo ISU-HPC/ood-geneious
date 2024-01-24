@@ -24,8 +24,10 @@ form:
   - bc_vnc_resolution
   - screen_size
   - dpi
-  - job_name
+  #- job_name    # Per VRSC-13520
   - bc_email_on_started
+
+
 attributes:
   version:
     widget: "select"
@@ -76,7 +78,7 @@ attributes:
 
   mem_req:
     label: "Memory required"
-    help: "If no unit specified, Megabytes.  Can use 'k', 'M', 'G' suffixes.  NO DECIMALS.  Example: 3072M"
+    help: "Specified as a whole number (no decimals) followed by a unit; e.g., 'M' (megabytes) or 'G' (gigabytes). Example: '16G' to request 16 gigabytes."
     widget: text_field
     value: "16G"
 
@@ -119,7 +121,7 @@ attributes:
     help: "Adjust display scaling dots-per-inch (DPI)"
 
   extra_arguments:
-    label: "Extra Optional Slurm Arguments"
+    label: "Optional Slurm Arguments"
     help: "Provide extra arguments for Slurm here. Examples: --mail-type=BEGIN,END,FAIL --mail-user=username@usda.gov --begin=now+1hour"
     widget: text_field
     value: ""
