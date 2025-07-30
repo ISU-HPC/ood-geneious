@@ -54,9 +54,7 @@ attributes:
     options:
     <% queues.each do |val| %>
     <%  p = val.split(",")[0] %>
-    <%  pp = val.split(",")[0].ljust(24,'-') %>
-    <%  t = val.split(",")[1].rjust(24) %>
-      - [ " <%= pp %>-- Max Time: <%= t %>" , "<%= p %>"]
+      - [ " <%= p %> " ] 
     <% end %>
   <% end %>
 
